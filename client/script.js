@@ -1,4 +1,6 @@
 // ================= LẤY PHẦN TỬ =================
+const loginSubmitBtn = document.getElementById("login-submit");
+const registerSubmitBtn = document.getElementById("register-submit");
 const loginBtn = document.querySelector(".login-btn");
 const registerBtn = document.querySelector(".register-btn");
 const loginModal = document.getElementById("login-modal");
@@ -171,16 +173,37 @@ window.onclick = e => {
 // ===============  ĐĂNG NHẬP & ĐĂNG KÝ  ===============
 // ====================================================
 
-// Lấy danh sách user từ localStorage
-let users = JSON.parse(localStorage.getItem("users")) || [];
+// ===============  XỬ LÝ LOADING  ====================
+
+const loadingOverlay = document.getElementById("loading-overlay");
+
+function showLoading() {
+    loadingOverlay.style.display = "flex";
+
+    loginSubmitBtn.disabled = true;
+    registerSubmitBtn.disabled = true;
+
+    loginSubmitBtn.textContent = "Đang xử lý...";
+    registerSubmitBtn.textContent = "Đang xử lý...";
+}
+
+function hideLoading() {
+    loadingOverlay.style.display = "none";
+
+    loginSubmitBtn.disabled = false;
+    registerSubmitBtn.disabled = false;
+
+    loginSubmitBtn.textContent = "Đăng nhập";
+    registerSubmitBtn.textContent = "Tạo tài khoản";
+}
 
 // ---- ĐĂNG KÝ ----
 document.getElementById("register-submit").addEventListener("click", () => {
-    let username = document.getElementById("reg-username").value.trim();
-    let password = document.getElementById("reg-password").value.trim();
-    let password2 = document.getElementById("reg-password2").value.trim();
+    const username = document.getElementById("reg-username").value.trim();
+    const password = document.getElementById("reg-password").value.trim();
+    const password2 = document.getElementById("reg-password2").value.trim();
 
-    if (!username || !password) {
+    if (!username || !password || !password2) {
         showToast("Vui lòng nhập đầy đủ thông tin!", "error");
         return;
     }
@@ -190,51 +213,76 @@ document.getElementById("register-submit").addEventListener("click", () => {
         return;
     }
 
-    if (users.find(u => u.username === username)) {
-        showToast("Tên đăng nhập đã tồn tại!", "error");
-        return;
-    }
+    showLoading(); // HIỆN LOADING
 
-    users.push({ username, password });
-    localStorage.setItem("users", JSON.stringify(users));
+    fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        hideLoading(); // TẮT LOADING
 
-    // Xóa input
-    document.getElementById("reg-username").value = "";
-    document.getElementById("reg-password").value = "";
-    document.getElementById("reg-password2").value = "";
+        showToast(data.message, "success");
+        registerModal.style.display = "none";
 
-    showToast("Đăng ký thành công!", "success");
-    registerModal.style.display = "none";
+        document.getElementById("reg-username").value = "";
+        document.getElementById("reg-password").value = "";
+        document.getElementById("reg-password2").value = "";
+    })
+    .catch(() => {
+        hideLoading(); // TẮT LOADING
+
+        showToast("Lỗi server!", "error");
+    });
 });
 
 // ---- ĐĂNG NHẬP ----
 document.getElementById("login-submit").addEventListener("click", () => {
-    let username = document.getElementById("login-username").value.trim();
-    let password = document.getElementById("login-password").value.trim();
+    const username = document.getElementById("login-username").value.trim();
+    const password = document.getElementById("login-password").value.trim();
 
     if (!username || !password) {
         showToast("Vui lòng nhập đầy đủ thông tin!", "error");
         return;
     }
 
-    let user = users.find(u => u.username === username && u.password === password);
+    showLoading(); // HIỆN LOADING
 
-    if (!user) {
-        showToast("Sai tên đăng nhập hoặc mật khẩu!", "error");
-        return;
-    }
+    fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(res => res.json())
+    .then(data => {
 
-    // Lưu user hiện tại
-    currentUser = username;
-    localStorage.setItem("currentUser", currentUser);
+        hideLoading(); // TẮT LOADING
 
-    // Xóa input
-    document.getElementById("login-username").value = "";
-    document.getElementById("login-password").value = "";
+        if (!data.username) {
+            showToast(data.message || "Đăng nhập thất bại!", "error");
+            return;
+        }
 
-    showToast("Đăng nhập thành công! Chào " + username, "success");
-    loginModal.style.display = "none";
-    updateAuthUI();
+        currentUser = data.username;
+        localStorage.setItem("currentUser", currentUser);
+
+        showToast(data.message, "success");
+        loginModal.style.display = "none";
+        updateAuthUI();
+
+        document.getElementById("login-username").value = "";
+        document.getElementById("login-password").value = "";
+    })
+    .catch(() => {
+        hideLoading(); // TẮT LOADING
+        showToast("Không kết nối được server!", "error");
+    });
 });
 
 // ---- ĐĂNG XUẤT ----
