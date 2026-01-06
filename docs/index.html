@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your GAMESITE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- ================= SIDEBAR =============== -->
+    <aside id="sidebar" class="sidebar">
+        <div class="logo-section">
+            <img src="https://www.gamesitetemplates.com/images/source/future-game-site-logo.JPG" alt="Phoenix Logo" class="logo-icon">
+            <div class="website-link">Website: https://www.cyber.vn</div>
+            <div class="fps-info">FPS-06B</div>
+        </div>
+        
+        <div class="auth-section">
+            <div class="auth-display" style="display: none; text-align: center; margin-bottom: 15px;">
+                <div class="username-display" style="color: var(--primary-color); font-weight: bold; margin-bottom: 8px;"></div>
+                <button class="auth-btn logout-btn" style="width: 100%;">Đăng xuất</button>
+            </div>
+            <div class="auth-buttons">
+                <button class="auth-btn login-btn">Đăng nhập</button>
+                <button class="auth-btn register-btn">Đăng ký</button>
+            </div>
+        </div>
+
+        <nav class="category-list">
+        </nav>
+
+        <div class="footer-links">
+            <div>Báo máy lỗi, phần mềm, game v.v...</div>
+            <div>Yêu cầu hỗ trợ</div>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT =============== -->
+    <main class="main-content full">
+        <header class="top-bar">
+            <i class="fas fa-bars menu-icon" id="toggleSidebar"></i>
+            <div class="app-title">Phoenix Esports Arena</div>
+            
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Nhập tên món cần tìm kiếm tại đây">
+            </div>
+
+            <div class="toggle-switch">
+                <input type="checkbox" id="dark-mode-toggle" checked>
+                <label for="dark-mode-toggle"></label>
+            </div>
+        </header>
+
+        <!-- FILTER -->
+        <div class="category-filter">
+            <span class="active">Tất cả</span>
+            <span>Cơm</span>
+            <span>Đồ Ăn Vặt</span>
+            <span>Mì</span>
+            <span>Xôi</span>
+            <span>Bánh Mì</span>
+            <span>Nước</span>
+        </div>
+
+        <!-- PRODUCT GRID -->
+        <section class="product-grid">
+
+            <!-- Ảnh thêm mới 1 -->
+            <div class="product-card" data-category="Nước">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpKKKjtJxhfQQk4em3imtOh7v1bl0-gGfj7w&s" alt="Hình mới 1">
+                
+                <div class="product-name">Sữa</div>
+                <div class="product-price">10.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Nước">
+                <img src="https://vi.abvietnam.vn/wp-content/uploads/2024/08/lon-bia-camel-lager-330ml-sleek.jpg" alt="Hình mới 1">
+                
+                <div class="product-name">Bia</div>
+                <div class="product-price">10.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Đồ Ăn Vặt">
+                <img src="https://product.hstatic.net/200000601239/product/snack-bap-ngot-oishi-goi-42g-201912050006355601_ec190e8d12594d78ab36a0a34048e162_1024x1024.jpg" alt="Hình mới 1">
+                
+                <div class="product-name">Bim bim</div>
+                <div class="product-price">10.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Đồ Ăn Vặt">
+                <img src="https://inthanhtien.com/wp-content/uploads/2023/11/bao-bi-snack.jpg" alt="Hình mới 1">
+                
+                <div class="product-name">Lays</div>
+                <div class="product-price">10.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            
+
+            <!-- Ảnh thêm mới 2 -->
+            <div class="product-card" data-category="Mì">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaiDp24CurypbnLZjCXGI6rPMIDAg6HApA_g&s" alt="Hình mới 2">
+                <div class="product-name">Mì tôm</div>
+                <div class="product-price">20.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Nước">
+                <img src="https://cdn.tgdd.vn/Products/Images/3226/76514/bhx/nuoc-tang-luc-rong-do-huong-dau-330ml-202407051745133879.jpg" alt="Hình mới 2">
+                <div class="product-name">Rồng đỏ</div>
+                <div class="product-price">20.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <!-- Sản phẩm mặc định -->
+            <div class="product-card" data-category="Nước">
+                <img src="https://cdn.tgdd.vn/Products/Images/2563/84816/bhx/thung-24-chai-nuoc-tinh-khiet-aquafina-500ml-202407121620249226.jpg" alt="AquaVina">
+                <div class="product-name">AquaVina</div>
+                <div class="product-price">12.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Nước">
+                <img src="https://cdn.tgdd.vn/Products/Images/8938/76562/bhx/tra-xanh-c2-huong-chanh-360ml-201912090949471802.jpg" alt="AquaVina">
+                <div class="product-name">C2</div>
+                <div class="product-price">15.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Nước">
+                <img src="https://www.lottemart.vn/media/catalog/product/cache/0x0/4/8/4897036695289-1.jpg.webp" alt="Monster">
+                <div class="product-name">Monster Ổi Hồng</div>
+                <div class="product-price">30.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Đồ Ăn Vặt">
+                <img src="https://tuyendung.kfcvietnam.com.vn/Data/Sites/1/News/50/01-red-annule.png" alt="Monster">
+                <div class="product-name">KFC</div>
+                <div class="product-price">30.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Bánh Mì">
+                <img src="https://bizweb.dktcdn.net/100/512/219/products/mockup-bm-olive-cha-bo-ng.jpg?v=1747795673490" alt="Monster">
+                <div class="product-name">Bánh OLIVE</div>
+                <div class="product-price">30.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Nước">
+                <img src="https://www.lottemart.vn/media/catalog/product/cache/0x0/8/9/8935001214236-1.jpg.webp" alt="Nuoc Bi Dao">
+                <div class="product-name">Nước Bí Đao Wonderfarm</div>
+                <div class="product-price">15.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Nước">
+                <img src="https://product.hstatic.net/200000077081/product/screenshot_8_1aa42041d92847eb9c507b3a98249147_grande.png" alt="Latte Socola Sữa">
+                <div class="product-name">Latte Socola Sữa</div>
+                <div class="product-price">17.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+            <div class="product-card" data-category="Nước">
+                <img src="https://vietmartjp.com/wp-content/uploads/2025/05/sting-xanh-vietmart-2-1.jpg" alt="Sting Việt Quất">
+                <div class="product-name">Sting Việt Quất</div>
+                <div class="product-price">16.000 đ</div>
+                <button class="buy-btn">Mua</button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= ORDER SUMMARY =============== -->
+    <aside class="order-summary">
+        <div class="order-header">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Giỏ hàng</span>
+        </div>
+
+        <!-- GIỎ HÀNG ITEMS -->
+        <div class="cart-items">
+            <div class="empty-cart-message">Giỏ hàng trống</div>
+        </div>
+
+        <!-- TỔNG THANH TOÁN -->
+        <div class="total-section">
+            <span>Tổng thanh toán</span>
+            <span class="total-amount">0 đ</span>
+        </div>
+
+        <!-- NÚT THANH TOÁN -->
+        <button id="checkout-btn" class="checkout-btn" style="margin-top: 15px;">Thanh toán</button>
+        
+        <div class="service-options">
+            <!-- ================= LOGIN MODAL ================= -->
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Đăng nhập</h2>
+        <input id="login-username" type="text" placeholder="Tên đăng nhập">
+        <input id="login-password" type="password" placeholder="Mật khẩu">
+        <button id="login-submit" class="auth-submit-btn">Đăng nhập</button>
+    </div>
+</div>
+
+<!-- ================= REGISTER MODAL ================= -->
+<div id="register-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Đăng ký</h2>
+        <input id="reg-username" type="text" placeholder="Tên đăng nhập">
+        <input id="reg-password" type="password" placeholder="Mật khẩu">
+        <input id="reg-password2" type="password" placeholder="Nhập lại mật khẩu">
+        <button id="register-submit" class="auth-submit-btn">Tạo tài khoản</button>
+    </div>
+</div>
+
+<!-- ================= TOAST NOTIFICATION ================= -->
+<div id="toast" class="toast"></div>
+
+<!-- ================= QUANTITY MODAL ================= -->
+<div id="quantity-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="product-name-title">Sản phẩm</h2>
+        <p style="color: #e50914; font-size: 18px; margin: 15px 0;">
+            Giá: <span id="product-price-display">0</span> đ
+        </p>
+        <label for="quantity-input" style="color: var(--text-color); display: block; margin-bottom: 10px;">Số lượng:</label>
+        <input id="quantity-input" type="number" min="1" value="1" placeholder="Nhập số lượng">
+        <p style="color: #888; font-size: 12px; margin-top: 10px;">
+            Tổng tiền: <span id="total-price-display" style="color: #e50914; font-size: 16px;">0</span> đ
+        </p>
+        <button id="confirm-buy-btn" class="auth-submit-btn" style="margin-top: 20px;">Thêm vào giỏ</button>
+    </div>
+</div>
+
+<!-- ================= QR CODE MODAL ================= -->
+<div id="qr-modal" class="modal">
+    <div class="modal-content" style="text-align: center;">
+        
+        <h2>Quét mã QR để thanh toán</h2>
+        <div style="margin: 20px 0;">
+            <img id="qr-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Rickrolling_QR_code.png" alt="QR Code" style="width: 250px; height: 250px; border-radius: 10px;">
+        </div>
+        <p style="color: #888; font-size: 12px; margin-top: 15px;">
+            Tổng thanh toán: <span id="qr-total-amount" style="color: #e50914; font-size: 16px;">0</span> đ
+        </p>
+        <button class="auth-submit-btn" style="margin-top: 15px;" onclick="completePayment()">Đã thanh toán</button>
+    </div>
+</div>
+<!-- ================= LOADING OVERLAY ================= -->
+<div id="loading-overlay" class="loading-overlay">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <p>Đang xử lý, chờ xíu nha…</p>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
+
