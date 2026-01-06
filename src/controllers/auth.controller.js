@@ -1,11 +1,8 @@
-import express from "express";
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 
-const router = express.Router();
-
 // ĐĂNG KÝ
-router.post("/register", async (req, res) => {
+export const register = async (req, res) => {
   const { username, password } = req.body;
 
   const exist = await User.findOne({ username });
@@ -18,10 +15,10 @@ router.post("/register", async (req, res) => {
   await user.save();
 
   res.json({ message: "Đăng ký thành công" });
-});
+};
 
 // ĐĂNG NHẬP
-router.post("/login", async (req, res) => {
+export const login = async (req, res) => {
   const { username, password } = req.body;
 
   const user = await User.findOne({ username });
@@ -35,6 +32,4 @@ router.post("/login", async (req, res) => {
   }
 
   res.json({ message: "Đăng nhập thành công", username });
-});
-
-export default router;
+};

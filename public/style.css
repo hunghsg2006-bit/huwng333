@@ -30,6 +30,12 @@ body {
     width: 100%;
 }
 
+.mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background-color: var(--main-bg);
+}
 /* ================ SIDEBAR ================ */
 .sidebar {
     width: 250px;
@@ -819,17 +825,37 @@ body.light-mode .modal-content input {
 /* ========== MOBILE (max-width: 768px) ========== */
 @media (max-width: 768px) {
     .container {
+        display: flex;
         flex-direction: column;
     }
 
     .sidebar {
-        width: 100%;
-        padding: 10px;
-        flex-direction: row;
-        align-items: center;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 250px;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        border-right: 1px solid var(--border-color);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    /* nền mờ khi mở sidebar */
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
     }
 
     .logo-section {
@@ -872,11 +898,14 @@ body.light-mode .modal-content input {
     .main-content {
         height: auto;
         overflow-y: auto;
+        width: 100%;
+        margin: 0;
     }
 
     .top-bar {
-        padding: 8px 10px;
-        min-height: 50px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
     }
 
     .menu-icon {
@@ -909,13 +938,18 @@ body.light-mode .modal-content input {
     }
 
     .category-filter {
-        margin: 0 10px 15px 10px;
-        padding: 8px 0;
+        position: sticky;
+        top: 50px; /* chiều cao top-bar mobile */
+        z-index: 99;
+
+        background-color: var(--main-bg);
+        padding: 8px 10px;
+
         overflow-x: auto;
-        gap: 5px;
-        display: flex !important;
-        border-bottom: 1px solid var(--border-color);
+        overflow-y: hidden;
         white-space: nowrap;
+        display: flex;
+        gap: 8px;
     }
 
     .category-filter span {
@@ -931,6 +965,7 @@ body.light-mode .modal-content input {
         gap: 8px;
         padding: 10px;
         padding-bottom: 60px;
+        padding-top: 140px;
     }
 
     .product-card {
@@ -957,7 +992,10 @@ body.light-mode .modal-content input {
     }
 
     .order-summary {
+        position: static;
         width: 100%;
+        height: auto;
+        margin-top: 10px;
         padding: 10px;
         border-left: none;
         border-top: 1px solid var(--border-color);
@@ -1051,6 +1089,9 @@ body.light-mode .modal-content input {
 
     #product-price-display {
         font-size: 14px;
+    }
+    body {
+        padding-bottom: 120px;
     }
 }
 
