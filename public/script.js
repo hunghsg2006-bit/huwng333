@@ -215,7 +215,7 @@ document.getElementById("register-submit").addEventListener("click", () => {
 
     showLoading(); // HIỆN LOADING
 
-    fetch("http://localhost:3000/api/auth/register", {
+    fetch("/api/auth/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -252,7 +252,7 @@ document.getElementById("login-submit").addEventListener("click", () => {
 
     showLoading(); // HIỆN LOADING
 
-    fetch("http://localhost:3000/api/auth/login", {
+    fetch("/api/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -469,9 +469,35 @@ function completePayment() {
     updateCartDisplay();
     qrModal.style.display = "none";
 }
+// ====================================================
+// ===============  XỬ LÝ SIDEBAR  ====================
+// ====================================================
+
 const toggleBtn = document.getElementById('toggleSidebar');
 const sidebar = document.getElementById('sidebar');
 
+const overlay = document.createElement("div");
+overlay.className = "sidebar-overlay";
+document.body.appendChild(overlay);
+
 toggleBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('hide');
+
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+        // MOBILE: chỉ slide ra vào
+        sidebar.classList.toggle("show");
+        overlay.classList.toggle("show");
+    } else {
+        // DESKTOP: ẩn / hiện sidebar
+        sidebar.classList.toggle("hide");
+    }
+});
+
+
+
+// bấm nền để đóng
+overlay.addEventListener("click", () => {
+    sidebar.classList.remove("show");
+    overlay.classList.remove("show");
 });
